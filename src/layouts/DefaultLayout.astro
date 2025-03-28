@@ -109,17 +109,3 @@ const {
     </style>
   </body>
 </html>
-<script>
-  import Rellax from 'rellax';
-
-  function initRellax() {
-    var rellax = new Rellax('.rellax', {
-      center: true
-    });
-  }
-  initRellax();
-  document.addEventListener('astro:after-swap', () => {
-    initRellax();
-  })
-  
-</script>
