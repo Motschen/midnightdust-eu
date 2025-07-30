@@ -6,14 +6,14 @@ const { modid } = Astro.props
 ---
 
 <gradle-version modid={modid}>
-  <div class="wrapper">
+  <div>
     <label for="loader-selector" class="sr-only">Select the Modloader</label>
     <select
       name="loader-selector"
       id="loader-selector"
       class="selector cursor-pointer rounded-md pl-3 pr-2 py-1.5 border-2 dark:border-green-300 dark:bg-neutral-800 dark:text-white focus-visible:outline-none"
       aria-label="Choose the Modloader">
-      
+
     </select>
     <label for="version-selector" class="sr-only">Select the Version</label>
     <select
@@ -32,7 +32,7 @@ class VersionInfo {
     versionList: any;
     finishedArray: any;
     modInfo: any;
-    
+
     selectedLoader: string;
     selectedVersion: string;
 
@@ -73,7 +73,7 @@ class VersionInfo {
      * */
     loadVersionList() {
         let selectedLoader = this.selectedLoader;
-        let versionMap = Object.keys(this.finishedArray).reduce(function(map, value) { 
+        let versionMap = Object.keys(this.finishedArray).reduce(function(map, value) {
             if (value.startsWith(selectedLoader)) {
                 const version = value.split("+")[1];
                 if (!Object.values(map).includes(version)) {
@@ -88,7 +88,7 @@ class VersionInfo {
         ));
         return versionList;
     }
-    
+
     /**
      * Loads the version info from Modrinth
      * @param modid The ID of the mod
@@ -119,13 +119,13 @@ class VersionElement extends HTMLElement {
   connectedCallback() {
     var modid = this.getAttribute("modid");
     if (modid == null) return;
-    
+
     // Get the gradle.properties code block
     const versionLabel = document.getElementById("resulting-version");
     // Get the 2 selectors defined above
     const loaderSelector = document.getElementById("loader-selector");
     const versionSelector = document.getElementById("version-selector");
-    
+
     VersionInfo.load(modid).then((versionInfo) => {
         if (loaderSelector instanceof HTMLSelectElement) {
             versionInfo.loaderList.forEach((loader: string) => {
@@ -159,7 +159,7 @@ class VersionElement extends HTMLElement {
     });
   }
 
-  
+
 }
 // Tell the browser to use our VersionElement class for <gradle-version> elements.
 customElements.define('gradle-version', VersionElement);
