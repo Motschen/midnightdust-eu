@@ -9,22 +9,23 @@ import { Icon } from 'astro-icon/components'
 import { Notification } from 'accessible-astro-components'
 import CustomTabs from "../../components/CustomTabs.astro"
 import Difficulty from "../../components/Difficulty.astro"
+import BlurryDivider from "../../components/BlurryDivider.astro"
 import pythonCodeImage from '../../assets/betterleaves/script.png';
 import ingameImage from '../../assets/betterleaves/ingame.png';
 
 # Better Leaves Wiki
 
-Welcome to the Better Leaves wiki.  
-This documentation aims to help you create your own flavour for any texturepack or mod.  
+Welcome to the Better Leaves wiki.
+This documentation aims to help you create your own flavour for any texturepack or mod.
 
 <br/>
-<ImageComparison firstTitle="Python Code" secondTitle="In-Game" sliderColor='var(--action-color)' sliderShadowColor='var(--action-color)'> 
+<ImageComparison firstTitle="Python Code" secondTitle="In-Game" sliderColor='var(--action-color)' sliderShadowColor='var(--action-color)'>
     <Image slot="first-image" width="1920" height="1080" alt="A screenshot showing the Python script code"  src={pythonCodeImage}/>
     <Image slot="second-image" width="1920" height="1080" alt="A screenshot of the Better Leaves resourcepack in action" src={ingameImage}/>
 </ImageComparison>
 
 ## Getting Started <Difficulty difficulty="easy" />
-First of all, you need to download the contents of the GitHub repository.  
+First of all, you need to download the contents of the GitHub repository.
 To do so, you can either download the [zip file](https://github.com/TeamMidnightDust/BetterLeavesLite/archive/refs/heads/main.zip), or just execute
 ```bash
 git clone https://github.com/TeamMidnightDust/BetterLeavesLite.git
@@ -32,23 +33,23 @@ git clone https://github.com/TeamMidnightDust/BetterLeavesLite.git
 in a terminal window.
 
 ## Texturepacks <Difficulty difficulty="easy" />
-You can easily create a build for any texturepack.  
-Just add the pack (as a .zip file or folder) to the input/texturepacks/ folder.  
+You can easily create a build for any texturepack.
+Just add the pack (as a .zip file or folder) to the input/texturepacks/ folder.
 After that, follow the <a href="#building">Building</a> section to get your flavour!
 
 <center><img alt="An overview of the input folder" src="/betterleaves/input-folder.png" width="500"></img></center>
-<p class="text-center italic">The input folder is all you have to worry about</p>  
+<p class="text-center italic">The input folder is all you have to worry about</p>
 
 ## Mods <Difficulty difficulty="easy" />
-In simple cases, it is enough to put the mod file in the /input/mods folder and continue with the <a href="#building">Building</a> section.  
+In simple cases, it is enough to put the mod file in the /input/mods folder and continue with the <a href="#building">Building</a> section.
 
 <center><img alt="An overview of the input/mods folder, showing the automatic unpacking process" src="/betterleaves/mods-unpacking.png" width="500"></img></center>
 <p class="text-center italic">Put the .jar file into input/mods, and the script will take care of extracting all textures with "leaves" in their name.
 <br/>The _temp folder is purely symbolic here, it will only exist for a few milliseconds during the extraction process.</p>
 
 ## Building <Difficulty difficulty="medium" />
-To build your flavour of the pack, you need to have Python installed on your system.  
-You can get it on any modern operating system.  
+To build your flavour of the pack, you need to have Python installed on your system.
+You can get it on any modern operating system.
 
 <CustomTabs tabs={[{
     name: `Windows`,
@@ -66,7 +67,7 @@ You can get it on any modern operating system.
 }]}>
     <div id="windows" data-active="true">
       Download the latest stable Python 3 release from the official <a href="https://www.python.org/downloads/windows/">website</a><br/>
-      or using winget in PowerShell:  
+      or using winget in PowerShell:
       <br/>
       ```bash
       winget install -e --id Python.Python.3.13.1
@@ -74,16 +75,16 @@ You can get it on any modern operating system.
     </div>
     <div id="linux" class="hidden">
       On most systems, Python should already be installed by default.<br/>
-      Else, just install Python using your distro's package manager.  
+      Else, just install Python using your distro's package manager.
       <br/>
-      Arch Linux:  
+      Arch Linux:
       ```bash
       pacman -S python
       ```
     </div>
     <div id="macos" class="hidden">
       In case you haven't already, install Homebrew according to the <a href="https://brew.sh/">official instructions</a>.<br/>
-      Now, you can just install python using the following command:  
+      Now, you can just install python using the following command:
       <br/>
       ```bash
       brew install python
@@ -91,8 +92,8 @@ You can get it on any modern operating system.
     </div>
 </CustomTabs>
 
-Now that you have python installed, head back into the BetterLeavesLite directory.  
-Here, you should now open a terminal window and run  
+Now that you have python installed, head back into the BetterLeavesLite directory.
+Here, you should now open a terminal window and run
 ```bash
 pip install -r requirements.txt
 ```
@@ -100,12 +101,12 @@ To build the pack, execute the script using the following command:
 ```bash
 python3 gen_pack.py 1.0 Your Edition
 ```
-Replace "1.0" with your desired version number and "Your Edition" with the name you'd like to appear in the resourcepack description ingame.  
+Replace "1.0" with your desired version number and "Your Edition" with the name you'd like to appear in the resourcepack description ingame.
 And in no time, the script will generate a ready-to-use zip file with your desired content.
 
 ## Irregularities and Missing Textures <Difficulty difficulty="advanced" />
-If you see missing textures when trying your freshly-built pack, the mod you're adding support for has a more complicated asset structure.  
-In these cases, you unfortunately have to manually configure exceptions in the /input/overrides.json file.  
+If you see missing textures when trying your freshly-built pack, the mod you're adding support for has a more complicated asset structure.
+In these cases, you unfortunately have to manually configure exceptions in the /input/overrides.json file.
 ```json
 {
     // Leaves that should not be tinted based on the biome they're in
@@ -133,6 +134,70 @@ In these cases, you unfortunately have to manually configure exceptions in the /
     "dynamicTreesNamespaces": {
         "minecraft": "dynamictrees",
         "aether": "dtaether"
+    },
+    // Force-generate (non-bushy) item models for various blocks
+    "generateItemModels": [
+        "biomesoplenty:rainbow_birch_leaves",
+        "betterend:lacugrove_leaves"
+    ],
+    // Specify blocks that share the same models
+    "blockStateCopies": {
+        "minecraft:oak_leaves": [
+            "twilightforest:twilight_oak_leaves",
+            "dynamictrees:oak_undergrowth_leaves"
+        ]
+    },
+    // A list of textures that will not be treated as leaf blocks (useful for texture stitching)
+    "compileOnly": [
+      "minecraft:block/snow"
+    ]
+}
+```
+<BlurryDivider />
+## The .betterleaves.json format
+
+### Block States <Difficulty difficulty="advanced" />
+Sometimes, you want models to only apply to specific block states.
+
+This is also useful in cases where you want to combine multiple leaf variant textures into a single blockstate file (in that case, set state to "").
+`input/assets/eternal_starlight/northland_leaves.betterleaves.json`:
+```json
+{
+    "blockStateData": {
+        "block": "eternal_starlight:northland_leaves",
+        "state": "snowy=false"
     }
+}
+```
+
+### Sprite Overrides <Difficulty difficulty="advanced" />
+You can override the sprites used in the model. Currently, top and bottom faces of the leaf model will default to the regular texture, but can be overridden this way.
+
+`input/assets/eternal_starlight/northland_leaves_snowy.betterleaves.json`:
+```json
+{
+    "spriteOverrides": {
+        "top": "minecraft:block/snow",
+        "bottom": "eternal_starlight:block/northland_leaves"
+    }
+    ...
+}
+```
+
+### Texture Stitching <Difficulty difficulty="hard" />
+Some leaves have textures that consist of different halves – for example Blue Wisteria Leaves from Environmental.
+This is where texture stitching comes in.
+<center><img style="image-rendering: pixelated" alt="Showcase of the texture stitching layout" src="/betterleaves/demo_blue_wisteria_leaves_top.png" width="400"></img></center>
+<p class="text-center italic">Texture stitching allows you to use custom sub-textures while generating the bushy texture</p>
+
+`input/assets/environmental/blue_wisteria_leaves_top.betterleaves.json`:
+```json
+{
+    "textureStitching": {
+        "1-3": "environmental:block/wisteria_leaves",
+        // Unspecified parts will use the regular leaf texture
+        "7-9": "environmental:block/blue_wisteria_leaves"
+    }
+    ...
 }
 ```
