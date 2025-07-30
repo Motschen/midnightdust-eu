@@ -1,0 +1,56 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import BlurryDivider from '../components/BlurryDivider.astro'
+import CallToAction from '../components/CallToAction.astro'
+import ContentMedia from '../components/ContentMedia.astro'
+---
+
+<DefaultLayout title="This Rocks!">
+  <h1 class="my-8 text-center">This Rocks!</h1>
+  <ContentMedia imgSrc="/thisrocks/thisrocks_plains.png">
+    <h2>
+      Enhance your world generation with <span
+        class="bg-gradient-to-r from-green-500 to-yellow-500 bg-clip-text text-transparent">detailed</span
+      > natural blocks.
+    </h2>
+    <p class="text-2xl">
+      Are you bored of staring at endless empty plains and beaches?<br />
+      This Rocks is on its way to rescue you!
+    </p>
+  </ContentMedia>
+  <ContentMedia imgSrc="/thisrocks/thisrocks_sea.png" reverseImg={true}>
+    <h2>
+      Enjoy nature on <span class="bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent"
+        >vanilla</span
+      >
+      clients!
+    </h2>
+    <p class="text-2xl">
+      Thanks to the Polymer library, newer versions of the mod allow anyone to join the server and enjoy the pretty
+      decorations.<br />
+      No client mods required!<br />
+      <p>
+        Only available in the Fabric version. Find more serverside mods <a href="https://modrinth.com/mods?q=polymer"
+          >here</a
+        >
+        .
+      </p>
+    </p>
+  </ContentMedia>
+  <BlurryDivider />
+  <CallToAction
+    text="Start using This Rocks on Fabric right now!"
+    icon="fabric"
+    url_gh="https://github.com/TeamMidnightDust/ThisRocks"
+    url_mr="https://modrinth.com/mod/this-rocks"
+    url_cf="https://www.curseforge.com/minecraft/mc-mods/this-rocks"
+  />
+  <CallToAction
+    text="Are you on (Neo-)Forge? Here you go!"
+    icon="neoforge"
+    url_gh="https://github.com/Mrbysco/ThisRocksForge"
+    url_mr="https://modrinth.com/mod/this-rocks-forge"
+    url_cf="https://www.curseforge.com/minecraft/mc-mods/this-rocks-forge"
+    mod="neoforge"
+  />
+</DefaultLayout>
