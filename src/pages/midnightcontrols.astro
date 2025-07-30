@@ -6,28 +6,33 @@ import ContentMedia from '../components/ContentMedia.astro'
 ---
 
 <DefaultLayout title="MidnightControls">
-  <h2 class="my-8 text-6xl text-center">MidnightControls</h2>
+  <h1 class="my-8 text-center">MidnightControls</h1>
   <ContentMedia imgSrc="/midnightcontrols/feature-touchscreen.webp">
-    <h2>Play Minecraft whichever way <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">you</span> want!</h2>
+    <h2>
+      Play Minecraft whichever way <span
+        class="bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">you</span
+      > want!
+    </h2>
     <p class="text-2xl">
-      MidnightControls allows the use of controllers, touchscreens and even eye trackers!<br>
+      MidnightControls allows the use of controllers, touchscreens and even eye trackers!<br />
       Minecraft Java was never more accessible.
     </p>
   </ContentMedia>
   <ContentMedia imgSrc="/midnightcontrols/automobility.png" reverseImg={true}>
     <h2>Broad mod compatibility</h2>
     <p class="text-2xl">
-      Many Fabric and Quilt mods are compatible with MidnightControls right out of the box.<br>
-      The mod also exposes an API, allowing developers to easily add controller support to complex mods.<br>
+      Many Fabric and Quilt mods are compatible with MidnightControls right out of the box.<br />
+      The mod also exposes an API, allowing developers to easily add controller support to complex mods.<br />
       <p>Shown here is <a href="https://modrinth.com/mod/automobility">Automobility</a>, go check it out!</p>
     </p>
   </ContentMedia>
   <section>
     <div class="container">
-      <h2 class="mb-16 text-6xl">Features</h2>
+      <h1 class="mb-16">Features</h1>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
         <Feature icon="ion:game-controller-outline" title="Controller Support">
-          Use your favorite controller to play your favorite game.<br>Many controllers are supported without any configuration!
+          Use your favorite controller to play your favorite game.<br />Many controllers are supported without any
+          configuration!
         </Feature>
         <Feature icon="ion:finger-print-outline" title="Touchscreen Support">
           You only have a touchscreen? No problem! The only thing missing is multitouch support.
@@ -36,10 +41,12 @@ import ContentMedia from '../components/ContentMedia.astro'
           Eye Trackers are a great way for people with disabilities to still be able to enjoy this great game!
         </Feature>
         <Feature icon="ion:options-outline" title="Configurable">
-          The MidnightLib-powered config is full of exciting features.<br>Use the advanced config screen for even more of them!
+          The MidnightLib-powered config is full of exciting features.<br />Use the advanced config screen for even more
+          of them!
         </Feature>
         <Feature icon="ion:people-outline" title="Splitscreen">
-          Invite your homies and loved ones for a local splitscreen Minecraft session! Consult the wiki for setup instructions.
+          Invite your homies and loved ones for a local splitscreen Minecraft session! Consult the wiki for setup
+          instructions.
         </Feature>
         <Feature icon="ion:happy-outline" title="Great Community">
           MidnightControls has an amazing community that is always willing to help with any trouble!
@@ -47,21 +54,27 @@ import ContentMedia from '../components/ContentMedia.astro'
       </div>
     </div>
   </section>
-  <CallToAction text="Start using MidnightControls right now!" 
-  url_gh="https://github.com/TeamMidnightDust/MidnightControls" 
-  url_mr="https://modrinth.com/mod/midnightcontrols"
-  url_cf="https://www.curseforge.com/minecraft/mc-mods/midnightcontrols"
-  url_wiki="/wiki/midnightcontrols"
-  mod="midnightcontrols"
+  <CallToAction
+    text="Start using MidnightControls right now!"
+    url_gh="https://github.com/TeamMidnightDust/MidnightControls"
+    url_mr="https://modrinth.com/mod/midnightcontrols"
+    url_cf="https://www.curseforge.com/minecraft/mc-mods/midnightcontrols"
+    url_wiki="/wiki/midnightcontrols"
+    mod="midnightcontrols"
   />
   <section>
     <div class="container">
-      <h2 class="my-32 text-6xl text-center">MidnightControlsExtra</h2>
+      <h1 class="my-32 text-center">MidnightControlsExtra</h1>
       <ContentMedia imgSrc="/midnightcontrols/front-block-placing.webp">
-        <h2>You want even <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-cyan-500">more</span>?</h2>
+        <h2>
+          You want even <span class="bg-gradient-to-r from-green-500 to-cyan-500 bg-clip-text text-transparent"
+            >more</span
+          >?
+        </h2>
         <p class="text-2xl">
-          We got you!<br/> <br/>
-          MidnightControlsExtra provides useful features that might trigger anticheats.<br/>
+          We got you!<br />
+          <br />
+          MidnightControlsExtra provides useful features that might trigger anticheats.<br />
           Front block placing, anyone?
         </p>
       </ContentMedia>
@@ -70,7 +83,7 @@ import ContentMedia from '../components/ContentMedia.astro'
           Place those pesky blocks almost as fast as Sonic would!
         </Feature>
         <Feature icon="ion:share-outline" title="Front Block Placing">
-          Place blocks in front of you without sneaking up to the edge of the block.<br/>Just like on Bedrock!
+          Place blocks in front of you without sneaking up to the edge of the block.<br />Just like on Bedrock!
         </Feature>
         <Feature icon="ion:layers-outline" title="Vertical Reacharound">
           Easily place something below the block you are standing on!
@@ -78,9 +91,10 @@ import ContentMedia from '../components/ContentMedia.astro'
       </div>
     </div>
   </section>
-  <CallToAction text="Download MidnightControlsExtra!" 
-  url_gh="https://github.com/TeamMidnightDust/MidnightControlsExtra" 
-  url_mr="https://modrinth.com/mod/midnightcontrols-extra"
-  url_cf="https://www.curseforge.com/minecraft/mc-mods/midnightcontrolsextra"
+  <CallToAction
+    text="Download MidnightControlsExtra!"
+    url_gh="https://github.com/TeamMidnightDust/MidnightControlsExtra"
+    url_mr="https://modrinth.com/mod/midnightcontrols-extra"
+    url_cf="https://www.curseforge.com/minecraft/mc-mods/midnightcontrolsextra"
   />
 </DefaultLayout>
