@@ -65,7 +65,7 @@ You can get it on any modern operating system.
     icon: 'simple-icons:apple',
     id: 'macos'
 }]}>
-    <div id="windows" data-active="true">
+    <div data-tab-condition="windows">
       Download the latest stable Python 3 release from the official <a href="https://www.python.org/downloads/windows/">website</a><br/>
       or using winget in PowerShell:
       <br/>
@@ -73,7 +73,7 @@ You can get it on any modern operating system.
       winget install -e --id Python.Python.3.13.1
       ```
     </div>
-    <div id="linux" class="hidden">
+    <div data-tab-condition="linux" class="hidden">
       On most systems, Python should already be installed by default.<br/>
       Else, just install Python using your distro's package manager.
       <br/>
@@ -82,7 +82,7 @@ You can get it on any modern operating system.
       pacman -S python
       ```
     </div>
-    <div id="macos" class="hidden">
+    <div data-tab-condition="macos" class="hidden">
       In case you haven't already, install Homebrew according to the <a href="https://brew.sh/">official instructions</a>.<br/>
       Now, you can just install python using the following command:
       <br/>

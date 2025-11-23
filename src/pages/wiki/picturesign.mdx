@@ -3,60 +3,109 @@ layout: ../../layouts/MarkdownLayout.astro
 title: PictureSign Wiki
 ---
 
+import CustomTabs from "../../components/CustomTabs.astro"
 import { Icon } from 'astro-icon/components'
 import { Notification } from 'accessible-astro-components'
 
 # PictureSign Wiki
 
-Welcome to the PictureSign wiki.  
-This documentation aims to help you make your world come alive using signs.  
+Welcome to the PictureSign wiki.
+This documentation aims to help you make your world come alive using signs.
 
 Explore PictureSign's features on this page:
 [Get to know the features](/picturesign)
 
 ### Placing a picture
-This mod works using signs to store picture information, making it 100% client-sided – the mod works on every server!  
-To start, place a picture and click on the icon in the bottom-right.  
-Great! You have now opened the helper interface. Here, you can add a URL to your desired media and customize various options!  
+This mod works using signs to store picture information, making it 100% client-sided – the mod works on every server!
+To start, place a picture and click on the icon in the bottom-right.
+Great! You have now opened the helper interface. Here, you can add a URL to your desired media and customize various options!
 <center><img alt="An image of the PictureSign helper interface" src="/picturesign/helper-gui.webp" width="900"></img></center>
-<p class="text-center italic">An image of the PictureSign helper interface</p>  
+<p class="text-center italic">An image of the PictureSign helper interface</p>
 
 ### Using GIFs, video and audio
-To use the Multimedia capabilities of this mod, first make sure you have installed the [WATERMeDIA](https://modrinth.com/mod/watermedia) mod, as well as [VLC media player](https://www.videolan.org/vlc/) on your system.  
-These components allow the video and audio support of PictureSign to work properly.  
-GIF support does not neccessarily need VLC, just WATERMeDIA. 
+To use the Multimedia capabilities of this mod, first make sure you have installed the [WATERMeDIA](https://modrinth.com/mod/watermedia) mod, as well as [VLC media player](https://www.videolan.org/vlc/) on your system.
+These components allow the video and audio support of PictureSign to work properly.
+GIF support does not neccessarily need VLC, just WATERMeDIA.
 
 ### Setting up pictures
-Pictures can come from various sources:  
-- Websites (Recommended): [Imgur](https://imgur.com/), [ImgBB](https://ibb.co/), [PictShare](https://pictshare.net/), [Freeimage](https://iili.io/)
-  - Only these websites will work by default. This is a security measure.
-- Resourcepack Textures: Use prefix <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 font-mono">rp:</span> (".png" is optional)
+Pictures can come from various sources:
+<CustomTabs tabs={[
+{
+    name: `Websites`,
+    id: 'source-websites',
+    icon: 'mdi:web-box',
+    active: true
+},
+{
+    name: `Resourcepack Textures`,
+    id: 'source-respack',
+    icon: 'mdi:zip-box'
+},
+{
+    name: `Local files`,
+    id: 'source-local',
+    icon: 'mdi:file-cabinet'
+}
+]}>
+<div data-tab-condition="source-websites">
+- [Imgur](https://imgur.com/), [ImgBB](https://ibb.co/), [PictShare](https://pictshare.net/), [Freeimage](https://iili.io/)
+  - Only these websites will work by default.
+  - This is a security measure.
+</div>
+<div data-tab-condition="source-respack" class="hidden">
+- Use prefix <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 font-mono">rp:</span> (".png" is optional)
   - Texture from Vanilla: e.g. "rp:textures/block/diamond_block.png"
   - Texture from a Mod: e.g. "rp:picturesign:textures/gui/sprites/icon/picturesign"
-- Local files: Use prefix <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 font-mono">file:</span>
+</div>
+<div data-tab-condition="source-local" class="hidden">
+- Use prefix <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 font-mono">file:</span>
   - File in your Minecraft folder: e.g. "file:./config/picturesign/image.png"
   - File on your Hard drive: e.g. "file:C:/Users/Motschen/Pictures/image.png" (Windows) or "file:/home/motschen/Pictures/image.png" (Linux/MacOS)
+</div>
+</CustomTabs>
 
 <Notification type="info">
   <Icon name="ion:information-circle-outline" />
   <p>
-    <strong>Info:</strong> Avoid using local files to load pictures.  
+    <strong>Info:</strong> Avoid using local files to load pictures.
     They will not be visible by other players, exept if their instance also includes the files.
   </p>
-</Notification>  
+</Notification>
 
 ### Setting up GIFs
-GIFs can currently only come from one source:  
-- Websites: [Imgur](https://imgur.com/), [Tenor](https://tenor.com/)
+GIFs can currently only come from one source:
+<CustomTabs tabs={[
+{
+    name: `Websites`,
+    id: 'source-websites-dummy',
+    icon: 'mdi:web-box',
+    active: true
+}
+]}>
+<div>
+- [Imgur](https://imgur.com/), [Tenor](https://tenor.com/)
   - Only these websites will work by default. This is a security measure.
+</div>
+</CustomTabs>
 
 ### Setting up videos and audios
-Multimedia can currently only come from one source:  
-- Websites: [YouTube](https://youtube.com/), [Vimeo](https://vimeo.com/)
+Multimedia can currently only come from one source:
+<CustomTabs tabs={[
+{
+    name: `Websites`,
+    id: 'source-websites-dummy',
+    icon: 'mdi:web-box',
+    active: true
+}
+]}>
+<div>
+- [YouTube](https://youtube.com/), [Vimeo](https://vimeo.com/)
   - Only these websites will work by default. This is a security measure.
+</div>
+</CustomTabs>
 
 ### (Advanced) Changing multimedia properties via JSON
-You can specify a volume as well as setting custom start and end times for multimedia using json files.  
+You can specify a volume as well as setting custom start and end times for multimedia using json files.
 An example JSON would look like this:
 ```json
 {
@@ -68,5 +117,16 @@ An example JSON would look like this:
 ```
 
 Upload your JSON file to one of the following sources:
-- Websites: [GitHub](https://github.com/), [GitHub Gists](https://gist.github.com/), [JSON Keeper](https://www.jsonkeeper.com/), [n:point](https://npoint.io/), [JSONsilo](https://jsonsilo.com/)
+<CustomTabs tabs={[
+{
+    name: `Websites`,
+    id: 'source-websites-dummy',
+    icon: 'mdi:web-box',
+    active: true
+}
+]}>
+<div>
+- [GitHub](https://github.com/), [GitHub Gists](https://gist.github.com/), [JSON Keeper](https://www.jsonkeeper.com/), [n:point](https://npoint.io/), [JSONsilo](https://jsonsilo.com/)
   - Only these websites will work by default. This is a security measure.
+</div>
+</CustomTabs>

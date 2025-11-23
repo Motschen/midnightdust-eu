@@ -38,21 +38,32 @@ import { Icon } from 'astro-icon/components'
   class CustomTabs extends HTMLElement {
     connectedCallback() {
         const buttons = this.querySelectorAll('button.tab');
+        const targets = document.querySelectorAll('[data-tab-condition]')
 
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 buttons.forEach((but) => {
                     but?.classList.remove('color-secondary');
-                    const div = document.getElementById(but.id.replace('-tab', ''));
-                    div?.classList.add('hidden');
                     but.setAttribute('data-active', 'false');
                 })
-                const tabDiv = document.getElementById(button.id.replace('-tab', ''));
                 button?.classList.add('color-secondary');
-                tabDiv?.classList.remove('hidden');
                 button.setAttribute('data-active', 'true');
+                this.updateTargets(targets)
             });
         });
+
+        this.updateTargets(targets)
+    }
+
+    updateTargets(targets: NodeListOf<Element>) {
+      targets.forEach((target) => {
+        const tabCondition = target.getAttribute('data-tab-condition');
+        const tabDiv = document.getElementById(tabCondition+'-tab');
+        if (tabDiv == null || !tabDiv.hasAttribute('data-active') || tabDiv.getAttribute('data-active') == 'false')
+          target.classList.add('hidden');
+        else
+          target.classList.remove('hidden');
+      })
     }
   }
 

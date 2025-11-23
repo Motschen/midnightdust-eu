@@ -4,45 +4,123 @@ title: MidnightLib Wiki
 ---
 
 import GradleVersionInfo from '../../components/GradleVersionInfo.astro'
+import CustomTabs from "../../components/CustomTabs.astro"
 import { Icon } from 'astro-icon/components'
 import { Notification } from 'accessible-astro-components'
 
 # MidnightLib Wiki
 
-Welcome to the MidnightLib wiki. Thanks for showing interest in our library!  
-This documentation aims to show you how to use the config system and the other features the library provides.  
+Welcome to the MidnightLib wiki. Thanks for showing interest in our library!
+This documentation aims to show you how to use the config system and the other features the library provides.
 Use the tabs on the right side to switch between the different pages.
 
 Explore MidnightLib's features on this page:
 [Get to know the features](/midnightlib)
 
 To use the library in your mods, just edit `build.gradle` and `gradle.properties` as seen below:
-### `build.gradle`
-```java
-repositories {
-  [... other repos ...]
-  maven {
-    url = "https://api.modrinth.com/maven"
-  }
+<h3 data-tab-condition="kotlin">`build.gradle.kts (Kotlin DSL)`</h3>
+<h3 data-tab-condition="groovy" class="hidden">`build.gradle (Groovy DSL)`</h3>
+<h3 data-tab-condition="kotlin-legacy" class="hidden">`build.gradle.kts (Kotlin DSL)`</h3>
+<h3 data-tab-condition="groovy-legacy" class="hidden">`build.gradle (Groovy DSL)`</h3>
+<CustomTabs tabs={[
+{
+    name: `build.gradle.kts`,
+    id: 'kotlin',
+    icon: 'simple-icons:kotlin',
+    active: true
+},
+{
+    name: `build.gradle`,
+    icon: 'simple-icons:apachegroovy',
+    id: 'groovy'
+},
+{
+    name: `build.gradle.kts (Legacy)`,
+    id: 'kotlin-legacy',
+    icon: 'simple-icons:kotlin'
+},
+{
+    name: `build.gradle (Legacy)`,
+    icon: 'simple-icons:apachegroovy',
+    id: 'groovy-legacy'
 }
-dependencies {  
-  [... other dependencies ...]  
-  modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}")  
-}
-```
+]}>
+    <div data-tab-condition="kotlin" data-active="true">
+    ```kotlin
+    repositories {
+      // other repos...
+      maven("https://maven.midnightdust.eu/releases")
+    }
+    dependencies {
+      // other dependencies...
+      val midnightlib = "eu.midnightdust:midnightlib:${project.midnightlib_version}"
+      modImplementation(midnightlib)
+      include(midnightlib)
+    }
+    ```
+    </div>
+    <div data-tab-condition="groovy" class="hidden">
+    ```groovy
+    repositories {
+      // other repos...
+      maven {
+        url = "https://maven.midnightdust.eu/releases"
+      }
+    }
+    dependencies {
+      // other dependencies...
+      modImplementation include ("eu.midnightdust:midnightlib:${project.midnightlib_version}")
+    }
+    ```
+    </div>
+    <div data-tab-condition="kotlin-legacy" class="hidden">
+    ```kotlin
+    repositories {
+      // other repos...
+      maven("https://api.modrinth.com/maven")
+    }
+    dependencies {
+      // other dependencies...
+      val midnightlib = "maven.modrinth:midnightlib:${project.midnightlib_version}"
+      modImplementation(midnightlib)
+      include(midnightlib)
+    }
+    ```
+    </div>
+    <div data-tab-condition="groovy-legacy" class="hidden">
+    ```groovy
+    repositories {
+      // other repos...
+      maven {
+        url = "https://api.modrinth.com/maven"
+      }
+    }
+    dependencies {
+      // other dependencies...
+      modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}")
+    }
+    ```
+    </div>
+</CustomTabs>
+<Notification type="warning">
+  <Icon name="ion:information-circle-outline" />
+  <p>
+    <strong>Legacy:</strong> For versions below 1.9.0, use the Modrinth maven repo provided in the legacy tabs.
+  </p>
+</Notification>
 ### `gradle.properties`
 <GradleVersionInfo modid='midnightlib' />
 
 <Notification type="info">
   <Icon name="ion:information-circle-outline" />
   <p>
-    <strong>Info:</strong> You should always pick the version that suits your modloader and Minecraft version best.  
-    Forge support is retired in favor of NeoForge.
+    <strong>Info:</strong> You should always pick the version that suits your modloader and Minecraft version best.
+    Forge support for 1.21+ is retired in favor of NeoForge.
   </p>
-</Notification>  
+</Notification>
 
 ### `YourConfigClass.java`
-To get started with implementing the config, you must create a public class that extends MidnightConfig.  
+To get started with implementing the config, you must create a public class that extends MidnightConfig.
 In this class, your variables can be stored and accessed. Here you can see the contents of an example config class:
 ```java
 package eu.midnightdust.fabric.example.config;
@@ -188,20 +266,20 @@ The .json language file for your config class could look similar to this:
 
 ### `YourModInitializer.java`
 To initialize the config you **have** to call:
-```java 
+```java
 MidnightConfig.init("modid", MidnightConfigExample.class);
 ```
-in your ModInitializer.  
-If you want it to show up properly in ModMenu, be sure to do so in the main initializer (instead of the client/dedicated server one).  
+in your ModInitializer.
+If you want it to show up properly in ModMenu, be sure to do so in the main initializer (instead of the client/dedicated server one).
 
 To get an instance of the config screen you can call:
-```java 
+```java
 MidnightConfig.getScreen(parent, "modid");
 ```
 
 ### `ModMenuInit.java`
 If you don't use the whole library and therefore not the automatic ModMenu integration, the code in your ModMenu integration class would look something like this:
-```java 
+```java
 @Override
 public ConfigScreenFactory<?> getModConfigScreenFactory() {
   return parent -> MidnightConfig.getScreen(parent, "modid");
